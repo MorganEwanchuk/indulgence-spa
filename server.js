@@ -87,46 +87,59 @@ app.post('/myForm', (req, res) => {
 
     const checkboxOptions = [  { label: 'Male', x: 28.5, y: intakeDoc.y + -155, checked: true },  { label: 'Female', x: 57, y: intakeDoc.y - 155,checked: true},{ label: 'poopscooper', x: 114, y: intakeDoc.y - 155,checked: true}] 
 
-    let checkboxY = emailY + 15
+    const checkboxes = [maleGenderCheckbox, femaleGenderCheckbox] 
+    
+    for(let i = 0; i <= checkboxes.length; i++){
+      const checkbox = checkboxes[i]
+      let label = checkboxes[i].name
+      const checkboxName = `checkboxes${i}`
+      const isChecked = checkbox.checked
 
-    checkboxOptions.forEach((option) => {
+
+
+    }
+    
+    
+    
+    // let checkboxY = emailY + 15
+    // checkboxOptions.forEach((option) => {
         // Draw the checkbox square
         // intakeDoc.translate(option.x,option.y)
-        intakeDoc.translate(option.x,option.y)
+    //     intakeDoc.translate(option.x,option.y)
 
-        let labelWidth = intakeDoc.widthOfString(option.label)
+    //     let labelWidth = intakeDoc.widthOfString(option.label)
 
-        intakeDoc.rect(option.x + labelWidth + 15, option.y + 2, 10, 10).stroke();
+    //     intakeDoc.rect(option.x + labelWidth + 15, option.y + 2, 10, 10).stroke();
 
 
-           if (option.checked) {
-            intakeDoc.lineWidth(1)
-            //    .moveTo(option.x + 2, option.y + 2)
-            //    .lineTo(option.x + 8, option.y + 8)
-            //    .moveTo(option.x + 47, option.y + 4)
-            //    .lineTo(option.x + 53, option.y + 10)
-               .moveTo(option.x + labelWidth + 17, option.y + 4)
-               .lineTo(option.x + labelWidth + 23, option.y + 10)
-               .stroke();
+    //        if (option.checked) {
+    //         intakeDoc.lineWidth(1)
+    //         //    .moveTo(option.x + 2, option.y + 2)
+    //         //    .lineTo(option.x + 8, option.y + 8)
+    //         //    .moveTo(option.x + 47, option.y + 4)
+    //         //    .lineTo(option.x + 53, option.y + 10)
+    //            .moveTo(option.x + labelWidth + 17, option.y + 4)
+    //            .lineTo(option.x + labelWidth + 23, option.y + 10)
+    //            .stroke();
         
-               intakeDoc.lineWidth(1)
-            //    .moveTo(option.x + 2, option.y + 8)
-            //    .lineTo(option.x + 8, option.y + 2)
-            //    .moveTo(option.x + 53, option.y + 4)
-            //    .lineTo(option.x + 47, option.y + 10)
-               .moveTo(option.x + labelWidth + 23, option.y + 4)
-               .lineTo(option.x + labelWidth + 17, option.y + 10)
-               .stroke();
-          }
+    //            intakeDoc.lineWidth(1)
+    //         //    .moveTo(option.x + 2, option.y + 8)
+    //         //    .lineTo(option.x + 8, option.y + 2)
+    //         //    .moveTo(option.x + 53, option.y + 4)
+    //         //    .lineTo(option.x + 47, option.y + 10)
+    //            .moveTo(option.x + labelWidth + 23, option.y + 4)
+    //            .lineTo(option.x + labelWidth + 17, option.y + 10)
+    //            .stroke();
+    //       }
 
-          intakeDoc.fontSize(12)
-     .text(option.label, option.x + 15, option.y + 2);
+    //       intakeDoc.fontSize(12)
+    //  .text(option.label, option.x + 15, option.y + 2);
 
-     intakeDoc.translate(-option.x,-option.y)
+    //  intakeDoc.translate(-option.x,-option.y)
 
-     checkboxY += 15
+    //  checkboxY += 15
 
-    });
+    // });
 
     intakeDoc.y = checkboxY
 
