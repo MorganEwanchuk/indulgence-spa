@@ -70,8 +70,8 @@ app.post('/myForm', (req, res) => {
     intakeDoc.pipe(fs.createWriteStream('intakeForm.pdf'))
 
     // Intake Header Info
-    intakeDoc.fontSize(20).text(intakeHeader).moveDown();
-    intakeDoc.fontSize(10).text(`${intakeIndulgenceAddress} ${intakeIndulgencePostal}`,{marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(20).text(intakeHeader, 150,10);
+    intakeDoc.fontSize(10).text(`${intakeIndulgenceAddress} ${intakeIndulgencePostal}`, 185,30, {marginBottom: 7}).moveDown();
     
     // intakeDoc.fontSize(14).text(intakeIndulgencePostal, {marginBottom: 7}).moveDown();
     
