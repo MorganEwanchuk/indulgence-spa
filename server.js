@@ -83,7 +83,7 @@ app.post('/myForm', (req, res) => {
     intakeDoc.fontSize(14).text(`Email: ${intakeEmail}`, {marginBottom: 7}).moveDown();
     const emailY = intakeDoc.y
 
-    const checkboxOptions = [  { label: 'Male ', x: 28.5, y: intakeDoc.y + -155, checked: true },  { label: 'Female ', x: 80, y: intakeDoc.y + 60,checked: false }] 
+    const checkboxOptions = [  { label: 'Male', x: 28.5, y: intakeDoc.y + -155, checked: true },  { label: 'Female', x: 57, y: intakeDoc.y - 155,checked: true},{ label: 'poopscooper', x: 114, y: intakeDoc.y - 155,checked: true}] 
 
     let checkboxY = emailY + 15
 
@@ -92,22 +92,28 @@ app.post('/myForm', (req, res) => {
         // intakeDoc.translate(option.x,option.y)
         intakeDoc.translate(option.x,option.y)
 
-        intakeDoc.rect(option.x + 45, option.y + 2, 10, 10).stroke();
+        let labelWidth = intakeDoc.widthOfString(option.label)
+
+        intakeDoc.rect(option.x + labelWidth + 15, option.y + 2, 10, 10).stroke();
 
 
            if (option.checked) {
             intakeDoc.lineWidth(1)
             //    .moveTo(option.x + 2, option.y + 2)
             //    .lineTo(option.x + 8, option.y + 8)
-               .moveTo(option.x + 47, option.y + 4)
-               .lineTo(option.x + 53, option.y + 10)
+            //    .moveTo(option.x + 47, option.y + 4)
+            //    .lineTo(option.x + 53, option.y + 10)
+               .moveTo(option.x + labelWidth + 17, option.y + 4)
+               .lineTo(option.x + labelWidth + 23, option.y + 10)
                .stroke();
         
                intakeDoc.lineWidth(1)
             //    .moveTo(option.x + 2, option.y + 8)
             //    .lineTo(option.x + 8, option.y + 2)
-               .moveTo(option.x + 53, option.y + 4)
-               .lineTo(option.x + 47, option.y + 10)
+            //    .moveTo(option.x + 53, option.y + 4)
+            //    .lineTo(option.x + 47, option.y + 10)
+               .moveTo(option.x + labelWidth + 23, option.y + 4)
+               .lineTo(option.x + labelWidth + 17, option.y + 10)
                .stroke();
           }
 
