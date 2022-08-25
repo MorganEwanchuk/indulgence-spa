@@ -83,7 +83,7 @@ app.post('/myForm', (req, res) => {
     intakeDoc.fontSize(14).text(`Email: ${intakeEmail}`, {marginBottom: 7}).moveDown();
     const emailY = intakeDoc.y
 
-    const checkboxOptions = [  { label: 'Male ', x: 50, y: intakeDoc.y + -160, checked: true },  { label: 'Female ', x: 80, y: intakeDoc.y + 60,checked: false }] 
+    const checkboxOptions = [  { label: 'Male ', x: 28, y: intakeDoc.y + -160, checked: true },  { label: 'Female ', x: 80, y: intakeDoc.y + 60,checked: false }] 
 
     let checkboxY = emailY + 15
 
