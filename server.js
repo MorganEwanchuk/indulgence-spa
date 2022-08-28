@@ -92,18 +92,22 @@ app.post('/myForm', (req, res) => {
         // intakeDoc.translate(option.x,option.y)
         intakeDoc.translate(option.x,option.y)
 
-        intakeDoc.rect(option.x, option.y, 10, 10).stroke();
+        intakeDoc.rect(option.x + 45, option.y + 2, 10, 10).stroke();
 
 
            if (option.checked) {
             intakeDoc.lineWidth(1)
-               .moveTo(option.x + 2, option.y + 2)
-               .lineTo(option.x + 8, option.y + 8)
+            //    .moveTo(option.x + 2, option.y + 2)
+            //    .lineTo(option.x + 8, option.y + 8)
+               .moveTo(option.x + 47, option.y + 4)
+               .lineTo(option.x + 53, option.y + 10)
                .stroke();
         
                intakeDoc.lineWidth(1)
-               .moveTo(option.x + 2, option.y + 8)
-               .lineTo(option.x + 8, option.y + 2)
+            //    .moveTo(option.x + 2, option.y + 8)
+            //    .lineTo(option.x + 8, option.y + 2)
+               .moveTo(option.x + 53, option.y + 4)
+               .lineTo(option.x + 47, option.y + 10)
                .stroke();
           }
 
