@@ -17,6 +17,9 @@ app.post('/myForm', (req, res) => {
 
     const techniquesItems = [listItem1,listItem2,listItem3,listItem4,listItem5,listItem6];
 
+
+
+
     const regionsItems = [regionsListItem1, regionsListItem2]
 
 
@@ -58,6 +61,8 @@ app.post('/myForm', (req, res) => {
 
     // const { consentHeader,consentName, secondConsentName, techniquesHeader, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate,intakeHeader, intakeIndulgenceAddress, intakeIndulgencePostal, intakeName, intakeAddress, intakePostal,intakeBirthdate} = req.body
 
+    
+    
     // Creation of intake doc
     const intakeDoc = new PDFDocument();
     intakeDoc.pipe(fs.createWriteStream('intakeForm.pdf'))
@@ -68,14 +73,50 @@ app.post('/myForm', (req, res) => {
     
     // intakeDoc.fontSize(14).text(intakeIndulgencePostal, {marginBottom: 7}).moveDown();
     
+
     // Intake Contact Info 
     intakeDoc.fontSize(14).text(`Name: ${intakeName}`, {marginBottom: 7}).moveDown();
     intakeDoc.fontSize(14).text(`Address: ${intakeAddress}`, {marginBottom: 7}).moveDown();
     intakeDoc.fontSize(14).text(`Postal Code: ${intakePostal}`, {marginBottom: 7}).moveDown();
     intakeDoc.fontSize(14).text(`Birth Date: ${intakeBirthdate}`, {marginBottom: 7}).moveDown();
 
+    intakeDoc.fontSize(14).text(`Email: ${intakeEmail}`, {marginBottom: 7}).moveDown();
+    const emailY = intakeDoc.y
+
+    const checkboxOptions = [  { label: 'Male ', x: 50, y: intakeDoc.y + -160, checked: true },  { label: 'Female ', x: 80, y: intakeDoc.y + 60,checked: false }] 
+
+    let checkboxY = emailY + 15
+
+    checkboxOptions.forEach((option) => {
+        // Draw the checkbox square
+        // intakeDoc.translate(option.x,option.y)
+        intakeDoc.translate(option.x,option.y)
+
+        intakeDoc.rect(option.x, option.y, 10, 10).stroke();
 
 
+           if (option.checked) {
+            intakeDoc.lineWidth(1)
+               .moveTo(option.x + 2, option.y + 2)
+               .lineTo(option.x + 8, option.y + 8)
+               .stroke();
+        
+               intakeDoc.lineWidth(1)
+               .moveTo(option.x + 2, option.y + 8)
+               .lineTo(option.x + 8, option.y + 2)
+               .stroke();
+          }
+
+          intakeDoc.fontSize(12)
+     .text(option.label, option.x + 15, option.y + 2);
+
+     intakeDoc.translate(-option.x,-option.y)
+
+     checkboxY += 15
+
+    });
+
+    intakeDoc.y = checkboxY
 
     intakeDoc.end()
 
