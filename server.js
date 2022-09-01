@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/myForm', (req, res) => {
-    const { consentHeader,consentName, secondConsentName, techniquesHeader, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate,intakeHeader, intakeIndulgenceAddress, intakeIndulgencePostal, intakeName, intakeAddress, intakePostal,intakeBirthdate} = req.body
+    const { consentHeader,consentName, secondConsentName, techniquesHeader, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate,intakeHeader, intakeIndulgenceAddress, intakeIndulgencePostal, intakeName, intakeAddress, intakePostal,intakeBirthdate, intakeEmail, maleGenderCheckbox, femaleGenderCheckbox} = req.body
 
     const techniquesItems = [listItem1,listItem2,listItem3,listItem4,listItem5,listItem6];
 
@@ -73,6 +73,9 @@ app.post('/myForm', (req, res) => {
     intakeDoc.fontSize(14).text(`Address: ${intakeAddress}`, {marginBottom: 7}).moveDown();
     intakeDoc.fontSize(14).text(`Postal Code: ${intakePostal}`, {marginBottom: 7}).moveDown();
     intakeDoc.fontSize(14).text(`Birth Date: ${intakeBirthdate}`, {marginBottom: 7}).moveDown();
+
+
+
 
     intakeDoc.end()
 
