@@ -63,15 +63,16 @@ app.post('/myForm', (req, res) => {
     intakeDoc.pipe(fs.createWriteStream('intakeForm.pdf'))
 
     // Intake Header Info
-    intakeDoc.fontSize(20).text(intakeHeader, {marginBottom: 7}).moveDown();
-    intakeDoc.fontSize(16).text(intakeIndulgenceAddress, {marginBottom: 7}).moveDown();
-    intakeDoc.fontSize(14).text(intakeIndulgencePostal, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(20).text(intakeHeader).moveDown();
+    intakeDoc.fontSize(10).text(`${intakeIndulgenceAddress} ${intakeIndulgencePostal}`,{marginBottom: 7}).moveDown();
+    
+    // intakeDoc.fontSize(14).text(intakeIndulgencePostal, {marginBottom: 7}).moveDown();
     
     // Intake Contact Info 
-    intakeDoc.fontSize(14).text(intakeName, {marginBottom: 7}).moveDown();
-    intakeDoc.fontSize(14).text(intakeAddress, {marginBottom: 7}).moveDown();
-    intakeDoc.fontSize(14).text(intakePostal, {marginBottom: 7}).moveDown();
-    intakeDoc.fontSize(14).text(intakeBirthdate, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(`Name: ${intakeName}`, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(`Address: ${intakeAddress}`, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(`Postal Code: ${intakePostal}`, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(`Birth Date: ${intakeBirthdate}`, {marginBottom: 7}).moveDown();
 
     intakeDoc.end()
 
