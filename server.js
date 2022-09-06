@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/myForm', (req, res) => {
-    const { header,consentName, secondConsentName, header3, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate} = req.body
+    const { consentHeader,consentName, secondConsentName, techniquesHeader, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate,intakeHeader, intakeIndulgenceAddress, intakeIndulgencePostal, intakeName, intakeAddress, intakePostal,intakeBirthdate} = req.body
 
     const techniquesItems = [listItem1,listItem2,listItem3,listItem4,listItem5,listItem6];
 
@@ -26,13 +26,13 @@ app.post('/myForm', (req, res) => {
 
 
     // Header input
-    consentDoc.fontSize(20).text(header, {marginBottom: 7}).moveDown();
+    consentDoc.fontSize(20).text(consentHeader, {marginBottom: 7}).moveDown();
     // doc.fontSize(14).text(paragraph1);
     // doc.fontSize(14).text(paragraph2);
     
     // Techniques/Draping with list
 
-    consentDoc.fontSize(16).text(header3, {marginBottom: 7}).moveDown();
+    consentDoc.fontSize(16).text(techniquesHeader, {marginBottom: 7}).moveDown();
     consentDoc.fontSize(14).text(techniquesParagraph, {marginBottom: 7}).moveDown();
     consentDoc.list(techniquesItems, {marginBottom: 7}).moveDown();
 
@@ -56,9 +56,24 @@ app.post('/myForm', (req, res) => {
 
     consentDoc.end()
 
+    // const { consentHeader,consentName, secondConsentName, techniquesHeader, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate,intakeHeader, intakeIndulgenceAddress, intakeIndulgencePostal, intakeName, intakeAddress, intakePostal,intakeBirthdate} = req.body
 
+    // Creation of intake doc
+    const intakeDoc = new PDFDocument();
+    intakeDoc.pipe(fs.createWriteStream('intakeForm.pdf'))
 
+    // Intake Header Info
+    intakeDoc.fontSize(20).text(intakeHeader, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(16).text(intakeIndulgenceAddress, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(intakeIndulgencePostal, {marginBottom: 7}).moveDown();
+    
+    // Intake Contact Info 
+    intakeDoc.fontSize(14).text(intakeName, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(intakeAddress, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(intakePostal, {marginBottom: 7}).moveDown();
+    intakeDoc.fontSize(14).text(intakeBirthdate, {marginBottom: 7}).moveDown();
 
+    intakeDoc.end()
 
     // Email sender information
     const transporter = nodemailer.createTransport({
@@ -78,6 +93,11 @@ app.post('/myForm', (req, res) => {
         attachments: [{
             filename: 'consentForm.pdf',
             path: 'consentForm.pdf',
+            contentType: 'application/pdf',
+            encoding: 'utf8'
+        },{
+            filename: 'intakeForm.pdf',
+            path: 'intakeForm.pdf',
             contentType: 'application/pdf',
             encoding: 'utf8'
         }]
