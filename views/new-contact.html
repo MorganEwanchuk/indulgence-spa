@@ -64,7 +64,7 @@
 
 
                 <form id="myForm" action="myForm" method="POST">
-                    <input type="hidden" name="header" value="INDULGENCE THERAPEUTIC MASSAGE CONSENT FORM">
+                    <input type="hidden" name="consentHeader" value="INDULGENCE THERAPEUTIC MASSAGE CONSENT FORM">
 					<h2>INDULGENCE THERAPEUTIC MASSAGE CONSENT FORM</h2>
 					<!-- <input type="hidden" name="paragraph1" value="We respect your decision to have massage therapy as part of your health maintenance program and strive to keep you safe and comfortable."> -->
                     <p>We respect your decision to have massage therapy as part of your health maintenance program and strive to keep you safe and comfortable.</p>
@@ -73,7 +73,7 @@
 						techniques used. Therapists have different approaches to massage therapy and as such, we encourage open 
 						communication with regards to the areas of concern from our clients and for each session to be fully explained by 
 						our therapists prior to the massage commencing.</p>
-						<input type="hidden" name="header3" value="TECHNIQUES/DRAPING">	
+						<input type="hidden" name="techniquesHeader" value="TECHNIQUES/DRAPING">	
 					<h3>TECHNIQUES/DRAPING</h3>
 					<input type="hidden" name="techniquesParagraph" value="Please be advised that our therapies sometimes and often include exposure and touching of the following areas:">
 					<p>Please be advised that our therapies sometimes and often include exposure and touching of the following areas:</p>
@@ -111,9 +111,24 @@
 					
 					<label for="consentDate">DATE: <input type="date" id="consentDate" name="consentDate" required pattern=[0-9]{4}-[0-9]{2}-[0-9]{2} placeholder="YYYY/MM/DD"></label>
   					
+					<!-- Start of Intake Form  -->
 
+					<input type="hidden" name="intakeHeader" value="Indulgence Therapeutic Massage">
+					<h2>Indulgence Therapeutic Massage</h2>
 
+					<input type="hidden" name="intakeIndulgenceAddress" value="313 Woodvale Road">
+					<span>313 Woodvale Road</span>
 
+					<input type="hidden" name="intakeIndulgencePostal" value="Edmonton, AB T6L 3Z7">
+					<span>Edmonton, AB T6L 3Z7</span>
+
+					<label for="intakeName">NAME: <input type="text" id="intakeName" name="intakeName" required></label>
+
+					<label for="intakeAddress">ADDRESS: <input type="text" id="intakeAddress" name="intakeAddress" required></label>
+
+					<label for="intakePostal">POSTAL CODE: <input type="text" id="intakePostal" name="intakePostal" required></label>
+
+					<label for="intakeBirthdate">BIRTHDATE: <input type="text" id="intakeBirthdate" name="intakeBirthdate" required></label>
 
 					
 					
@@ -204,7 +219,7 @@
 				</div> -->
 
 			<!-- Footer -->
-				<div id="footer" class="container">
+				<!-- <div id="footer" class="container">
 
 					<div class="row">
 						<div class="col-6 col-12-narrower">
@@ -215,7 +230,7 @@
 						</div>
 					</div>
 
-				</div>
+				</div> -->
 
 		</div>
 
