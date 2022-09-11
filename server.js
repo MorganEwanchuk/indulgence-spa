@@ -8,8 +8,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/views/new-contact.html');
 });
+
 
 app.post('/myForm', (req, res) => {
     const { header,consentName, secondConsentName, header3, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate} = req.body
@@ -55,6 +56,11 @@ app.post('/myForm', (req, res) => {
 
     consentDoc.end()
 
+
+
+
+
+    // Email sender information
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -63,6 +69,8 @@ app.post('/myForm', (req, res) => {
         }
       });
 
+
+      // Attachments and file names 
       const mailOptions = {
         from: 'morganlieu@gmail.com',
         to: 'mewanchuk@live.com',
@@ -91,6 +99,8 @@ app.post('/myForm', (req, res) => {
     //       <p>Second Name: ${secondConsentName}</p>
     //     `
     //   };
+
+    // Sends the mail
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(error);
