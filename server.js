@@ -12,27 +12,46 @@ app.get('/', (req, res) => {
 });
 
 app.post('/myForm', (req, res) => {
-    const { header,consentName, secondConsentName, header3, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6} = req.body
+    const { header,consentName, secondConsentName, header3, techniquesParagraph, listItem1, listItem2, listItem3, listItem4, listItem5, listItem6, regionsParagraph, regionsListItem1, regionsListItem2, consentSignature, consentDate} = req.body
 
     const techniquesItems = [listItem1,listItem2,listItem3,listItem4,listItem5,listItem6];
 
+    const regionsItems = [regionsListItem1, regionsListItem2]
+
+
+    // Creation of consent document
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream('output.pdf'))
 
+
+    // Header input
     doc.fontSize(20).text(header, {marginBottom: 7}).moveDown();
     // doc.fontSize(14).text(paragraph1);
     // doc.fontSize(14).text(paragraph2);
-    doc.fontSize(16).text(header3, {marginBottom: 7}).moveDown();
+    
+    // Techniques/Draping with list
 
+    doc.fontSize(16).text(header3, {marginBottom: 7}).moveDown();
     doc.fontSize(14).text(techniquesParagraph, {marginBottom: 7}).moveDown();
     doc.list(techniquesItems, {marginBottom: 7}).moveDown();
 
+    // Regions with list
+    doc.fontSize(14).text(regionsParagraph, {marginBottom: 7}).moveDown();
+    doc.list(regionsItems, {marginBottom: 7}).moveDown();
 
 
 
+
+
+    // Consent name inputs
     doc.fontSize(12).text(`I, ${consentName}, have read and understand the above information and give my consent to the registered massage therapist of Indulgence Therapeutic Massage to treat me with the understanding that the above regions indicated above may be touched for therapeutic purposes.`, {marginBottom: 7}).moveDown();
-    doc.fontSize(12).text(`I, ${secondConsentName}, understand that at any point of the massage session, I can request my therapist to adjust/change the pressure and techniques used.`);
+    doc.fontSize(12).text(`I, ${secondConsentName}, understand that at any point of the massage session, I can request my therapist to adjust/change the pressure and techniques used.`, {marginBottom: 7}).moveDown() 
 
+    // Consent signature and date
+    doc.fontSize(12).text(`SIGNATURE: ${consentSignature}`, {marginBottom: 5}).moveDown()
+    doc.fontSize(12).text(`DATE: ${consentDate}`)
+
+    // End of consent PDF
 
     doc.end()
 
