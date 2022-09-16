@@ -94,15 +94,22 @@
 						<li>Abdominal region
 						</li>
 					</ul>
+					<input type="hidden" name="regionsParagraph" value="We NEVER expose or touch the below regions:">
 					<h3>We NEVER expose or touch the below regions:</h3>
 					<ul>
+						<input type="hidden" name="regionsListItem1" value="Genitalia">
 						<li>Genitalia</li>
+						<input type="hidden" name="regionsListItem2" value="Nipple area">
 						<li>Nipple area</li>
 					</ul>
 					
   					<label for="consentName">I, <input type="text" id="consentName" name="consentName" required>, have read and understand the above information and give my consent to the registered massage therapist of Indulgence Therapeutic Massage to treat me with the understanding that the above regions indicated above may be touched for therapeutic purposes.</label>
 					<label for="secondConsentName">I, <input type="text" id="secondConsentName" name="secondConsentName" required>, understand that at any point of the massage session, I can request my therapist to adjust/change the pressure and techniques used.</label>
-  
+
+
+					<label for="consentSignature">SIGNATURE: <input type="text" id="consentSignature" name="consentSignature" required></label> 
+					
+					<label for="consentDate">DATE: <input type="date" id="consentDate" name="consentDate" required pattern=[0-9]{4}-[0-9]{2}-[0-9]{2} placeholder="YYYY/MM/DD"></label>
   					
 					
                 <button type="submit">Send</button>
