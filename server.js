@@ -4,7 +4,9 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 const nodemailer = require('nodemailer')
-app.use(express.urlencoded({ extended: true }));
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
